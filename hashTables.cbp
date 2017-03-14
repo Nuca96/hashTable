@@ -31,6 +31,24 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="hash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="hash.h" />
+		<Unit filename="hashTable.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="hashTable.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="list.c">
+			<Option compilerVar="CC" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="list.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -1,6 +1,6 @@
 #include<string.h>
 
-int insert(char *word, node *this_node)
+int l_insert(char *word, node *this_node)
 {
         //returns:
         //1 -> successful insertion
@@ -22,10 +22,10 @@ int insert(char *word, node *this_node)
         {
                 return 2;
         }
-        return insert(word, this_node->next);
+        return l_insert(word, this_node->next);
 }
 
-int free_node(node *this_node)
+int l_free_node(node *this_node)
 {
         if(this_node !=NULL)
         {
@@ -36,13 +36,13 @@ int free_node(node *this_node)
         return -1;
 }
 
-int remove(char *word, node *this_node)
+int l_remove(char *word, node *this_node)
 {
         //returns:
         //1 -> successfull deleting
         //2 -> word not found
         //-1 -> error
-        if (word=NULL)
+        if (word==NULL)
         {
                 return -1;
         }
@@ -54,7 +54,7 @@ int remove(char *word, node *this_node)
         {
                 if (strcmp(this_node->info, word)==0)
                 {
-                        free_node(this_node);
+                        l_free_node(this_node);
                         return 1;
                 }
         }
@@ -63,13 +63,13 @@ int remove(char *word, node *this_node)
                 struct node *aux;
                 aux=this_node->next;
                 this_node->next=this_node->next->next;
-                free_node(aux);
+                l_free_node(aux);
                 return 1;
         }
-        return remove(word, this_node->next);
+        return l_remove(word, this_node->next);
 }
 
-bool search(char *word, node *this_node)
+bool l_search(char *word, node *this_node)
 {
         if (word==NULL)
         {
@@ -83,10 +83,10 @@ bool search(char *word, node *this_node)
         {
                 return true;
         }
-        return search(word, this_node->next);
+        return l_search(word, this_node->next);
 }
 
-int delete_all (node *this_node)
+int l_delete_all (node *this_node)
 {
         //returns the number of elements deleted
         if (this_node==NULL) {
@@ -94,6 +94,6 @@ int delete_all (node *this_node)
         }
         node *next;
         next=this_node->next;
-        free_node(this_node);
-        return 1+delete_all(next);
+        l_free_node(this_node);
+        return 1+l_delete_all(next);
 }

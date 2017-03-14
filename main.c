@@ -4,6 +4,6 @@
 
 int main()
 {
-        printf("Hello world!\n");
+        //nu te mai uita aici, fraiere
         return 0;
 }
