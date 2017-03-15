@@ -1,6 +1,7 @@
 #include<string.h>
+#include "list.h"
 
-int l_insert(char *word, node *this_node)
+int l_insert(char *word, struct node *this_node)
 {
         //returns:
         //1 -> successful insertion
@@ -25,7 +26,7 @@ int l_insert(char *word, node *this_node)
         return l_insert(word, this_node->next);
 }
 
-int l_free_node(node *this_node)
+int l_free_node(struct node *this_node)
 {
         if(this_node !=NULL)
         {
@@ -36,7 +37,7 @@ int l_free_node(node *this_node)
         return -1;
 }
 
-int l_remove(char *word, node *this_node)
+int l_remove(char *word, struct node *this_node)
 {
         //returns:
         //1 -> successfull deleting
@@ -69,7 +70,7 @@ int l_remove(char *word, node *this_node)
         return l_remove(word, this_node->next);
 }
 
-bool l_search(char *word, node *this_node)
+bool l_search(char *word, struct node *this_node)
 {
         if (word==NULL)
         {
@@ -86,7 +87,7 @@ bool l_search(char *word, node *this_node)
         return l_search(word, this_node->next);
 }
 
-int l_delete_all (node *this_node)
+int l_delete_all (struct node *this_node)
 {
         //returns the number of elements deleted
         if (this_node==NULL) {

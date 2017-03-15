@@ -5,19 +5,19 @@
 struct hashTable
 {
         int dimension;
-        node *first;
+        struct node *first;
 };
 
-int h_create(hashTable hashT, int dim);
-int h_clear(hashTable hashT);
-int h_add (hashTable hashT, char *word);
-bool h_find (hashTable hashT, char *word);
-int h_remove(hashTable hashT, char *word);
-hashTable h_resize_halve(hashTable hashT);
-hashTable h_resize_double(hashTable hashT);
+int h_create(struct hashTable hashT, int dim);
+int h_clear(struct hashTable hashT);
+int h_add (struct hashTable hashT, char *word);
+_Bool h_find (struct hashTable hashT, char *word);
+int h_remove(struct hashTable hashT, char *word);
+struct hashTable h_resize_halve(struct hashTable hashT);
+struct hashTable h_resize_double(struct hashTable hashT);
 int print_word(char *word, char*where);
-int h_print_bucket (hashTable hashT, int i, char *where);
-int h_print (hashTable hashT, char *where);
+int h_print_bucket (struct hashTable hashT, int i, char *where);
+int h_print (struct hashTable hashT, char *where);
 
 
 

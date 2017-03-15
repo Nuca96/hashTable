@@ -6,10 +6,10 @@ struct node {
         struct node *next;
 };
 
-int l_insert (char *word, node *this_node);
-int l_remove (char *word, node *this_node);
-int l_free_node (node *this_node);
-int l_delete_all (node *this_node);
-bool l_search (char *word, node *this_node);
+int l_insert (char *word, struct node *this_node);
+int l_remove (char *word, struct node *this_node);
+int l_free_node (struct node* this_node);
+int l_delete_all (struct node* this_node);
+_Bool l_search (char *word, struct node *this_node);
 
 #endif // LIST_H_INCLUDED

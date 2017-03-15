@@ -1,5 +1,31 @@
 # depslib dependency file v1.0
-1489427083 source:d:\proiecte\timp liber\hashtables\main.c
+1489528417 source:d:\proiecte\timp liber\hashtables\main.c
 	<stdio.h>
 	<stdlib.h>
+
+1489540109 source:d:\proiecte\timp liber\hashtables\preluareparametri.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"myHash.h"
+	"preluareParametri.h"
+
+1489539118 d:\proiecte\timp liber\hashtables\preluareparametri.h
+
+1489540652 d:\proiecte\timp liber\hashtables\myhash.h
+	"hashTable.h"
+
+1489539316 d:\proiecte\timp liber\hashtables\hashtable.h
+	"list.h"
+
+1489539271 d:\proiecte\timp liber\hashtables\list.h
+
+1489538915 source:d:\proiecte\timp liber\hashtables\tema1.c
+	"preluareParametri.h"
+	"myhash.h"
+
+1489432627 source:d:\proiecte\timp liber\hashtables\hash.c
+	"hash.h"
+
+1489432643 d:\proiecte\timp liber\hashtables\hash.h
 
