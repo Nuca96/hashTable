@@ -1,82 +1,85 @@
-#include "list.h"
-#include "hash.h"
 #include "hashTable.h"
-#include <string.h>
 
-int h_create(struct hashTable hashT, int dim)
+int h_create(struct hashTable *hashT, int dim)
 {
         //returns:
         //0 -> success
         //-1 -> fail
         int i;
+
         if (h_clear(hashT) == -1)
         {
                 return -1;
         }
-        hastT.dimension=dim;
-        hashT.first = (node*) malloc(dim*sizeof(node));
+        hashT->dimension=dim;
+        hashT->first = (struct node*) malloc(dim*sizeof(struct node ));
         for (i=0; i<dim; i++)
         {
-                hashT.first[i].next=NULL;
-                hashT.first[i].word=NULL;
+
+                hashT->first[i].next=NULL;
+                hashT->first[i].info=NULL;
         }
         return 0;
+
 }
 
-int h_clear(struct hashTable hashT)
+int h_clear(struct hashTable *hashT)
 {
         int i;
-        for (i=0; i<hashT.dim; i++)
+        for (i=0; i<hashT->dimension; i++)
         {
-                l_delete_all(hashT.first[i].next);
+                l_delete_all(&hashT->first[i].next);
         }
-        free(first);
+        free(hashT->first);
+        return 0;
 }
 
 //unsigned int hash(const char *str, unsigned int hash_length)
 
-int h_add (struct hashTable hashT, char *word)
+int h_add (struct hashTable *hashT, char *word)
 {
         int number;
-        number = hash(word, hashT.dimension);
-        if (l_insert(word, hashT.first[number].next) == -1)
+        number = hash(word, hashT->dimension);
+
+        if (l_insert(word, hashT->first[number].next) == -1)
         {
                 return -1;
         }
         return 0;
 }
 
-bool h_find (struct hashTable hashT, char *word)
-{
-        if (word==NULL)
-        {
-                return false;
-        }
-        int number = hash(word, hashT.dimension);
-        return l_search(word, hash.first[number].next);
-}
-
-int h_remove(struct hashTable hashT, char *word)
+_Bool h_find (struct hashTable hashT, char *word)
 {
         if (word==NULL)
         {
                 return 0;
         }
         int number = hash(word, hashT.dimension);
-        return l_remove(word, hashT.first[number].next);
+        return l_search(word, hashT.first[number].next);
 }
 
-struct hashTable h_resize_double(struct hashTable hashT)
+int h_remove(struct hashTable *hashT, char *word)
+{
+        if (word==NULL)
+        {
+                return 0;
+        }
+        int number = hash(word, hashT->dimension);
+        return l_remove(word, hashT->first[number].next);
+}
+
+struct hashTable h_resize_double(struct hashTable *hashT)
 {
         struct hashTable newHash;
-        h_create(newHash, hashT.dimension*2);
+        h_create(&newHash, hashT->dimension*2);
         int i;
-        for (i=0; i<hashT.dimension; i++)
+        for (i=0; i<hashT->dimension; i++)
         {
-                node *N = hashT[i].first.next;
+                struct node *N = hashT->first[i].next;
+
                 while (N!=NULL)
                 {
-                        h_add(newHash, N->word);
+                        h_add(&newHash, N->info);
                         N=N->next;
                 }
         }
@@ -85,34 +88,35 @@ struct hashTable h_resize_double(struct hashTable hashT)
 }
 
 
-struct hashTable h_resize_halve(struct hashTable hashT)
+struct hashTable h_resize_halve(struct hashTable *hashT)
 {
         struct hashTable newHash;
-        create(newHash, hashT.dimension/2);
+        create(&newHash, hashT->dimension/2);
         int i;
-        for (i=0; i<hashT.dimension; i++)
+        for (i=0; i<hashT->dimension; i++)
         {
-                node *N = hashT[i].first.next;
+                struct node *N = hashT->first[i].next;
                 while (N!=NULL)
                 {
-                        h_add(newHash, N->word);
+                        h_add(&newHash, N->info);
                         N=N->next;
                 }
         }
-        h_clear(hashT);
+        h_clear(&hashT);
         return newHash;
 }
 
 int print_word(char *word, char *where)
 {
+        int succes;
         if (strcmp(where, "consola")!=0)
          {
                 int fd = open(where, O_WRONLY |O_CREAT | O_APPEND, 0664);
-
+                printf("%d\n",fd );
                 if(fd < 0)
                         return -1;
-
-                int succes = write(fd, word, strlen(word));
+                if(word!=NULL)
+                 succes = write(fd, word, strlen(word));
 
                 if(succes<0)
                         return -1;
@@ -122,8 +126,9 @@ int print_word(char *word, char *where)
          }
          else
          {
-                 print("%s", word);
+                 printf("%s", word);
          }
+         return 0;
 }
 
 int h_print_bucket (struct hashTable hashT, int i, char *where)
@@ -132,15 +137,15 @@ int h_print_bucket (struct hashTable hashT, int i, char *where)
         //-1 -> eroare
         //nr de elemente printate
 
-        if(hashT.dim>=i)
+        if(hashT.dimension<=i)
         {
                 return -1;
         }
         int nr=0;
-        node *N = hashT.first[i].next;
+        struct node *N = hashT.first[i].next;
         while(N!=NULL)
         {
-                if (print_word(strcat(word, " "), where)==-1)
+                if (print_word(strcat(N->info," "),where)==-1)
                 {
                         return -1;
                 }
@@ -162,7 +167,8 @@ int h_print (struct hashTable hashT, char *where)
                 }
                 if (succes>0)
                 {
-                        print_word("\n");
+                        print_word("\n","consola");
                 }
         }
+        return 0;
 }

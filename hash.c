@@ -1,4 +1,3 @@
-
 #include "hash.h"
 
 /**
@@ -16,4 +15,3 @@ unsigned int hash(const char *str, unsigned int hash_length)
 
 	return (hash % hash_length);
 }
-

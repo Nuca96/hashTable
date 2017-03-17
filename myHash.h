@@ -1,11 +1,10 @@
 #ifndef MYHASH_H_
 #define MYHASH_H_
+
 #include "hashTable.h"
 
-struct hashTable H;
-
 int create(int dim);
-int add(char *word);
+void add(char *word);
 void remove_word(char *word);
 void find(char *word, char *where);
 void print_bucket(int i, char *where);

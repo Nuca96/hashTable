@@ -1,24 +1,25 @@
-#include "hashTable.h"
 #include "myHash.h"
 
 int create(int dim)
 {
-        return h_create(H, dim);
+        return h_create(&H, dim);
 }
 
 void add(char *word)
 {
-        int succes= h_add(H, word);
+        int succes= h_add(&H, word);
+
 }
 
 void remove_word(char *word)
 {
-        int succes = h_remove(H, word);
+        int succes = h_remove(&H, word);
+
 }
 
 void find(char *word, char *where)
 {
-        bool is;
+        _Bool is;
         int succes;
         is = h_find(H, word);
         if (is)
@@ -34,7 +35,7 @@ void find(char *word, char *where)
 
 void clear()
 {
-        int succes = h_clear(H);
+        int succes = h_clear(&H);
 
 }
 
@@ -45,15 +46,17 @@ void print_bucket(int i, char *where)
 
 void print(char *where)
 {
-        int succec = h_print(where);
+        int succes = h_print(H,where);
+
+
 }
 
 void resize_double()
 {
-       struct hashTable nou = h_resize_double(H);
-       if (nou.dimension !=NULL)
+       struct hashTable nou = h_resize_double(&H);
+       if (nou.dimension !=0)
        {
-               h_clear(H);
+               h_clear(&H);
                H = nou;
        }
        else
@@ -64,10 +67,10 @@ void resize_double()
 
 void resize_halve()
 {
-       struct hashTable nou = h_resize_halve(H);
-       if (nou.dimension !=NULL)
+       struct hashTable nou = h_resize_halve(&H);
+       if (nou.dimension !=0)
        {
-               h_clear(H);
+               h_clear(&H);
                H = nou;
        }
        else
@@ -75,5 +78,3 @@ void resize_halve()
                //cazul in care hash-table-ul nu a putut fi realocat
        }
 }
-
-

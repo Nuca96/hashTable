@@ -3,7 +3,7 @@
 #include<string.h>
 
 #include "myHash.h"
-#include"preluareParametri.h"
+#include "preluareParametri.h"
 
 unsigned int selectOPCODE(char *operatie) {
 	if (strcmp(operatie, "add") == 0)
@@ -37,11 +37,13 @@ void executare_instructiune(char *line)
 	char *aux;
         p = strtok(line," \n");
         opcode=selectOPCODE(p);
+
         switch(opcode) {
                 case OPCODE_ADD:
                 {
 
                         p=strtok(NULL," \n");
+
                         //apelez functia de adaugare cu p (in p se regaseste cuvantul acum)
                         if (p!=NULL)
                                 add(p);
@@ -50,6 +52,7 @@ void executare_instructiune(char *line)
                 case OPCODE_REMOVE:
                 {
                         p=strtok(NULL," \n");
+
                         remove_word(p);
                         //apelez functia de stergere cu p (in p se regaseste cuvantul acum)
                         break;
@@ -58,7 +61,8 @@ void executare_instructiune(char *line)
                 {
 
                         p=strtok(NULL," \n");
-                        aux= (char *) malloc( sizeof(char) * (strlen(p)+1) );
+                        if(p!=NULL)
+                                aux= (char *) malloc( sizeof(char) * (strlen(p)+1) );
                         strcpy(aux, p);
                         p=strtok(NULL," \n");
                         if (p==NULL)
@@ -153,7 +157,3 @@ void UniversalParse(char *where)
 		executare_instructiune(line);
 	}
 }
-
-
-
-

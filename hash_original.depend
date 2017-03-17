@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1489599716 source:c:\users\fenris\hash\hash_original\hash.c
+	"hash.h"
+
+1489582106 c:\users\fenris\hash\hash_original\hash.h
+
+1489605007 source:c:\users\fenris\hash\hash_original\hashtable.c
+	"hashTable.h"
+
+1489599733 c:\users\fenris\hash\hash_original\hashtable.h
+	"list.h"
+
+1489604424 c:\users\fenris\hash\hash_original\list.h
+	<string.h>
+	<stdlib.h>
+	<stdio.h>
+	<fcntl.h>
+	"hash.h"
+	"preluareParametri.h"
+
+1489582098 c:\users\fenris\hash\hash_original\preluareparametri.h
+
+1489604775 source:c:\users\fenris\hash\hash_original\list.c
+	<string.h>
+	"list.h"
+
+1489606467 source:c:\users\fenris\hash\hash_original\main.c
+	"myHash.h"
+
+1489599722 c:\users\fenris\hash\hash_original\myhash.h
+	"hashTable.h"
+
+1489599860 source:c:\users\fenris\hash\hash_original\myhash.c
+	"myHash.h"
+
+1489599743 source:c:\users\fenris\hash\hash_original\preluareparametri.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"myHash.h"
+	"preluareParametri.h"
+
+1489592002 source:c:\users\fenris\hash\hash_original\test.c
+

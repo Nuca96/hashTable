@@ -13,8 +13,8 @@ int l_insert(char *word, struct node *this_node)
         }
         if ( this_node == NULL )
         {
-                this_node = (node*) malloc (sizeof(node));
-                this_node->info = (char*) malloc (strlen(word) + 1);
+                this_node = (struct node*)malloc (sizeof(struct node));
+                this_node->info = (char*) malloc (strlen(word));
                 strcpy(this_node->info, word);
                 this_node->next = NULL;
                 return 1;
@@ -30,7 +30,7 @@ int l_free_node(struct node *this_node)
 {
         if(this_node !=NULL)
         {
-                free(this_node->word);
+                free(this_node->info);
                 free(this_node);
                 return 0;
         }
@@ -70,7 +70,8 @@ int l_remove(char *word, struct node *this_node)
         return l_remove(word, this_node->next);
 }
 
-bool l_search(char *word, struct node *this_node)
+
+_Bool l_search(char *word, struct node *this_node)
 {
         if (word==NULL)
         {
@@ -93,7 +94,7 @@ int l_delete_all (struct node *this_node)
         if (this_node==NULL) {
                 return 0;
         }
-        node *next;
+        struct node *next;
         next=this_node->next;
         l_free_node(this_node);
         return 1+l_delete_all(next);
